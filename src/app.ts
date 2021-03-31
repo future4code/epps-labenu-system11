@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
+import { inserts } from ".";
 
 const app = express();
 
@@ -11,6 +12,7 @@ const server = app.listen( 3003, () => {
    if (server) {
       const address = server.address() as AddressInfo;
       console.log(`Server is running in http://localhost:${address.port}`);
+      // inserts()
    } else {
       console.error(`Failure upon starting server.`);
    }

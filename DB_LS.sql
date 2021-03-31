@@ -1,0 +1,49 @@
+CREATE TABLE LS_Class(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+date_start DATE NOT NULL,
+date_stop DATE NOT NULL,
+module INT NOT NULL
+);
+
+CREATE TABLE LS_Teacher(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+email VARCHAR(50) UNIQUE NOT NULL,
+date_birth DATE NOT NULL,
+class_id INT,
+FOREIGN KEY (class_id) REFERENCES LS_Class(id)
+);
+
+CREATE TABLE LS_Specialty(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE LS_TeacherSpecialtyRelation (
+teacher_id INT NOT NULL,
+specialty_id INT NOT NULL,
+FOREIGN KEY (teacher_id) REFERENCES LS_Teacher(id),
+FOREIGN KEY (specialty_id) REFERENCES LS_Specialty(id)
+);
+
+CREATE TABLE LS_Student(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+email VARCHAR(50) UNIQUE NOT NULL,
+date_birth DATE NOT NULL,
+class_id INT,
+FOREIGN KEY (class_id) REFERENCES LS_Class(id)
+);
+
+CREATE TABLE LS_Hobby(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE LS_StudentHobbyRelation (
+student_id INT NOT NULL,
+hobby_id INT NOT NULL,
+FOREIGN KEY (student_id) REFERENCES LS_Student(id),
+FOREIGN KEY (hobby_id) REFERENCES LS_Hobby(id)
+);
